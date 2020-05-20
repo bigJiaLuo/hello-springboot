@@ -4,8 +4,8 @@ server:
   # DataSource Config
 spring:
   datasource:
-    name: web #数据库名
-    url:  jdbc:mysql://127.0.0.1:3306/web?serverTimezone=Asia/Shanghai #数据库在本地的url
+    name: test #数据库名
+    url:  jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai #数据库在本地的url
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver #数据库驱动

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <script src="jqury/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+</head>
+<body>
+
+<form class="form-inline" id="form">
+    <div class="form-group">
+        <label for="exampleInputName2">用户名</label>
+        <input type="text" name="username" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail2">用户密码</label>
+        <input type="text" name="password" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+    </div>
+    <button onclick="mysubmit();" class="btn btn-default">添加用户</button>
+</form>
+<table class="table table-hover">
+    <!-- On cells (`td` or `th`) -->
+    <thead>
+        <tr>
+            <td class="active">用户ID</td>
+            <td class="success">用户名称</td>
+            <td class="warning">用户密码</td>
+            <td class="danger">用户权限</td>
+            <td class="info">操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user:${users}">
+            <td th:text="${user.id}" class="active"></td>
+            <td th:text="${user.username}" class="success"></td>
+            <td th:text="${user.password}" class="warning"></td>
+            <td th:text="${user.role}" class="danger"></td>
+            <td class="info">
+                <a th:href="@{/user+{id}(id=${user.id})}">修改</a>
+                <a th:href="@{/deleteUser+{id}(id=${user.id})}" id="delete">删除</a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+<form class="form-inline" action="/selectOne" method="get">
+    <div class="form-group">
+        <label for="exampleInputName3">用户id</label>
+        <input type="text" name="id" class="form-control" id="exampleInputName3" placeholder="3">
+    </div>
+    <button type="submit" class="btn btn-default">查询用户</button>
+</form>
+
+<script>
+    function mysubmit() {
+        $.ajax({
+            url:"/addUser",//请求url
+            data:$("#form").serialize(),//请求参数
+            async:true,//是否异步
+            success:function f(result) {
+                alert(result);
+                alert(result.msg);
+                window.confirm(result.msg);//新增用户成功提示框
+                location.href = "users";//重新加载界面,同步数据库信息
+            }
+        });
+    }
+</script>
+</body>
+</html>

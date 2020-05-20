@@ -1,9 +1,9 @@
 package com.fjl.service;
 
 import com.fjl.bean.User;
-import com.fjl.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * TOOD
@@ -21,4 +21,31 @@ public interface UserService {
      * @return 用户对象
      */
     User login(String username,String password);
+
+    /**
+     * 查询所有用户信息
+     * @return List
+     */
+    List<User> findAll();
+
+    /**
+     * 插入user 对象
+     * @param user
+     * @return 成功 true
+     */
+    boolean insertUser(User user);
+
+    /**
+     * 删除指定 id 用户
+     * @param id
+     * @return
+     */
+    boolean deleteUser(String id);
+
+    /**
+     * 根据指定id 查找用户
+     * @param id
+     * @return
+     */
+    User selectOne(String id);
 }
