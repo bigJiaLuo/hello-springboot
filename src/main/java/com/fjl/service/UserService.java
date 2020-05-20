@@ -48,4 +48,11 @@ public interface UserService {
      * @return
      */
     User selectOne(String id);
+
+    /**
+     * 修改 指定对象记录
+     * @param user
+     * @return
+     */
+    boolean updateUser(User user);
 }

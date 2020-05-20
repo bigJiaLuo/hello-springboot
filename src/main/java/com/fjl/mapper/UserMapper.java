@@ -40,4 +40,11 @@ public interface UserMapper{
      * @return
      */
     User selectOne(String id);
+
+    /**
+     * 根据指定对象 ，修改数据库中的 指定用户记录
+     * @param user
+     * @return
+     */
+    boolean updateUser(User user);
 }

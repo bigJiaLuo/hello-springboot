@@ -52,4 +52,15 @@ class UserServiceImplTest {
         User user = userService.selectOne("1");
         System.out.println(user);
     }
+
+    @Test
+    public void updateUser() {
+        User user = new User();
+        user.setId(2);
+        user.setPassword("321");
+        user.setUsername("qwe");
+        user.setRole("admin");
+        boolean b = userService.updateUser(user);
+        System.out.println(b);
+    }
 }

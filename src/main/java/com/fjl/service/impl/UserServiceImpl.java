@@ -47,4 +47,13 @@ public class UserServiceImpl implements UserService {
     public User selectOne(String id) {
         return userMapper.selectOne(id);
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        boolean flag = userMapper.updateUser(user);
+        if(flag){
+            return true;
+        }
+        return false;
+    }
 }

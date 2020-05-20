@@ -74,12 +74,17 @@ public class UserController {
         boolean flag = userService.deleteUser(id);
         List<User> users = userService.findAll();
         modelMap.addAttribute("users",users);
-        if(flag){
+        if(flag)
             return "users";
-        }
         return "error";
     }
 
+    /**
+     * 查找指定 用户
+     * @param id
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/selectOne")
     public String selectOne(String id,ModelMap modelMap){
         User user = userService.selectOne(id);
@@ -88,5 +93,24 @@ public class UserController {
             return "userInfo";
         }
         return "error";
+    }
+
+    @RequestMapping("/user+{id}")
+    public String findUserModify(@PathVariable("id") String id,ModelMap modelMap){
+        User user = userService.selectOne(id);
+        modelMap.addAttribute("user",user);
+        return "modify";
+    }
+
+    @RequestMapping("modify")
+    public String modify(User user,ModelMap modelMap){
+        boolean flag = userService.updateUser(user);
+        if(flag){
+            List<User> users = userService.findAll();
+            modelMap.addAttribute("users",users);
+            return "users";
+        }else{
+            return "error";
+        }
     }
 }
